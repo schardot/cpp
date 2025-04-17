@@ -1,6 +1,20 @@
 #include "utils.h"
 #include "Phonebook.h"
 
+Phonebook::Phonebook() : currentContacts(0) {}
+
+Phonebook::~Phonebook() {}
+
+void Phonebook::AddContact(const Contact &contact)
+{
+    if (currentContacts < MAX_CONTACTS){
+        contacts[currentContacts] = contact;
+        currentContacts++;
+    } else {
+        contacts[0] = contact;
+    }
+}
+
 void Phonebook::DisplayPhonebook(void) {
     std::cout << "|";
     FormatField("Index");
@@ -9,14 +23,14 @@ void Phonebook::DisplayPhonebook(void) {
     FormatField("Nickname");
     std::cout << std::endl;
 
-    if (contacts.size() == 0) {
+    if (contacts[0].getFirstName().empty()) {
         std::cout << "No contacts found" << std::endl;
         return ;
     }
 
     int i = 0;
 
-    while (i < contacts.size()) {
+    while (i < MAX_CONTACTS) {
         DisplayContact(contacts[i], i);
         i++;
     }
@@ -27,11 +41,13 @@ void Phonebook::DisplayPhonebook(void) {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::getline(std::cin, index);
         int ind = std::stoi(index);
-        if (ind < 0 || ind >= contacts.size()) {
+        if (ind < 0 || ind >= MAX_CONTACTS) {
             std::cout << "Invalid index" << std::endl;
             return;
         }
         Contact newContact = getContactFromIndex(ind);
+        if (newContact.getFirstName().empty())
+            return;
         DisplayFullContact(newContact);
     }
     catch (const std::invalid_argument &e)
@@ -42,6 +58,16 @@ void Phonebook::DisplayPhonebook(void) {
     {
         std::cout << "An unexpected error occurred!" << std::endl;
     }
+}
+
+Contact Phonebook::getContactFromIndex(int i) const
+{
+    if (i < 0 || i >= currentContacts)
+    {
+        std::cout << "Invalid index!" << std::endl;
+        return Contact();
+    }
+    return contacts[i];
 }
 
 void DisplayContact(Contact c, int i) {

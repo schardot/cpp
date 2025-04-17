@@ -1,25 +1,27 @@
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
-#include <vector>
 #include "Contact.h"
 
 class Phonebook {
-    private:
-        std::vector<Contact> contacts;
+	private:
+		static const int MAX_CONTACTS = 8;
+		Contact contacts[MAX_CONTACTS];
+		int currentContacts;
 
-    public:
-        Phonebook() {};
+	public:
+		Phonebook();
+		~Phonebook();
+		Phonebook(const Phonebook &other);
+		Phonebook &operator=(const Phonebook &other);
 
-        void AddContact(Contact contact)
-        {
-            if (contacts.size() == 8)
-                contacts[0] = contact;
-            else
-                contacts.push_back(contact);
-        }
-        void DisplayPhonebook(void);
-        Contact getContactFromIndex(int i) { return contacts[i]; }
+		void AddContact(const Contact &contact);
+		void DisplayPhonebook(void);
+		Contact getContactFromIndex(int i) const;
 };
+
+void DisplayContact(Contact c, int i);
+void DisplayFullContact(Contact c);
+void FormatField(std::string s);
 
 #endif
