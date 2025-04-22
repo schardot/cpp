@@ -14,11 +14,12 @@ $(NAME): $(OBJS)
 %.o: %.cpp
 	$(CPP) $(CFLAGS) -c $< -o $@
 
-clean: rm -f $(NAME) $(OBJS)
+clean:
+	rm -f $(NAME) $(OBJS)
 
-cleanf: clean
+fclean: clean
 	rm -f $(OBJS)
 
 re: clean all
 
-phony: clean cleanf re all
+phony: clean fclean re all
