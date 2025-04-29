@@ -1,4 +1,3 @@
-#include "utils.h"
 #include "Phonebook.h"
 
 Phonebook::Phonebook() : currentContacts(0) {}
@@ -38,9 +37,9 @@ void Phonebook::DisplayPhonebook(void) {
     try {
         std::string index;
         std::cout << "Enter index of the entry to display" << std::endl;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::getline(std::cin, index);
-        int ind = std::stoi(index);
+        int ind;
+        std::istringstream(index) >> ind;
         if (ind < 0 || ind >= MAX_CONTACTS) {
             std::cout << "Invalid index" << std::endl;
             return;
@@ -72,7 +71,11 @@ Contact Phonebook::getContactFromIndex(int i) const
 
 void DisplayContact(Contact c, int i) {
     std::cout << "|";
-    FormatField(std::to_string(i));
+
+    std::ostringstream oss;
+    oss << i;
+    FormatField(oss.str());
+
     FormatField(c.getFirstName());
     FormatField(c.getLastName());
     FormatField(c.getNickname());
@@ -92,8 +95,7 @@ void FormatField(std::string s) {
     if (len > 10)
         std::cout << s.substr(9) << ".";
     else {
-        std::cout << std::setw(10);
-        std::cout << s;
+        std::cout << std::setw(10) << s;
     }
     std::cout << "|";
 }

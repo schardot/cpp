@@ -1,4 +1,3 @@
-#include "utils.h"
 #include "Phonebook.h"
 #include "Contact.h"
 
@@ -10,6 +9,7 @@ int main(void)
     {
         std::cout << "Enter command: ADD, SEARCH or EXIT" << std::endl;
         std::cin >> command;
+        std::cin.ignore(1, '\n');
         if (command == "ADD")
         {
             Contact newContact = fillContact();

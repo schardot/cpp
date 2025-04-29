@@ -32,5 +32,6 @@ class Contact {
     std::string getDarkestSecret() const { return darkestSecret; }
 };
 
+Contact fillContact();
 
 #endif

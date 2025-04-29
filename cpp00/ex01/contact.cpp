@@ -1,12 +1,10 @@
 #include "Contact.h"
-#include "utils.h"
 
 Contact fillContact() {
     std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
-    std::cout << "Adding new contact:" << std::endl;
+    std::cout << "Adding new contact:" << std::endl ;
     while (firstName == "")
     {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "First name:" << std::endl;
         std::getline(std::cin, firstName);
     }
