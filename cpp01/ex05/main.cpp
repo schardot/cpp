@@ -1,7 +1,8 @@
 #include "Harl.hpp"
 
-int main(void) {
-
+int main(int ac, char **av) {
     Harl h;
-    h.complain("DEBUG");
+    if (ac == 1)
+        return (1);
+    h.complain(av[1]);
 }

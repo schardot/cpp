@@ -1,5 +1,5 @@
 CPP = c++
-CFLAGS = -Wall -std=c++11 -g
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 SRCS =  main.cpp
 OBJS = $(SRCS:.cpp=.o)
@@ -15,10 +15,10 @@ $(NAME): $(OBJS)
 	$(CPP) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(NAME) $(OBJS)
+	rm -f $(OBJS) *.replace
 
 fclean: clean
-	rm -f $(OBJS)
+	rm -f $(NAME) $(OBJS)
 
 re: clean all
 

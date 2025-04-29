@@ -5,7 +5,7 @@ Harl::Harl() {}
 Harl::~Harl() {}
 
 void Harl::complain(std::string level) {
-    std::string AllLevels[] = {"INFO", "DEBUG", "WARNING", "ERROR"};
+    std::string AllLevels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     void (Harl::*AllMembers[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
     for (int i = 0; i < 4; i ++) {

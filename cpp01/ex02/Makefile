@@ -1,10 +1,10 @@
 CPP = c++
 CFLAGS =  -Wall -Werror -Wextra -std=c++98
 
-SRCS =  main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRCS =  main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = violence
+NAME = brain
 
 all: $(NAME)
 

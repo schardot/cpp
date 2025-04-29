@@ -30,7 +30,7 @@ int main(int ac, char **av)
     std::ofstream replaceFile;
 
     myFile.open(av[1]);
-    replaceFile.open(repName);
+    replaceFile.open(repName.c_str());
 
     std::string line;
     if (myFile.is_open())

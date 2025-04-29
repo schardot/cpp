@@ -2,7 +2,7 @@
 
 int main(void) {
     std::string name = "Pedro";
-    int num = 2;
+    int num = 5;
 
     Zombie *horde = zombieHorde(num, name);
     for (int i = 0; i < num; i++) {
