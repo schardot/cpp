@@ -30,10 +30,12 @@ Account::~Account(void)
 };
 
 void Account::_displayTimestamp(void) {
-    std::time_t t = std::time(nullptr);
-
+    std::time_t t = std::time(NULL);
     std::tm *tmb = std::localtime(&t);
-    std::cout << std::put_time(tmb, "[%Y%m%d_%H%M%S] ");
+
+    char buffer[20];
+    std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", tmb);
+    std::cout << buffer;
 }
 
 int Account::getNbAccounts(void) { return (_nbAccounts); }

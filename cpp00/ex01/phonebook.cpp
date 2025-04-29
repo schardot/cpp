@@ -1,18 +1,18 @@
 #include "Phonebook.h"
 
-Phonebook::Phonebook() : currentContacts(0) {}
+Phonebook::Phonebook() : currentContacts(0), currentIndex(0) {}
 
 Phonebook::~Phonebook() {}
 
-void Phonebook::AddContact(const Contact &contact)
-{
-    if (currentContacts < MAX_CONTACTS){
-        contacts[currentContacts] = contact;
+void Phonebook::AddContact(const Contact& newContact) {
+    contacts[currentIndex] = newContact;
+
+    if (currentContacts < MAX_CONTACTS)
         currentContacts++;
-    } else {
-        contacts[0] = contact;
-    }
+
+    currentIndex = (currentIndex + 1) % MAX_CONTACTS;
 }
+
 
 void Phonebook::DisplayPhonebook(void) {
     std::cout << "|";

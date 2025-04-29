@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    std::string command;
+    std::string command = "";
     Phonebook pb;
     while (command != "EXIT")
     {

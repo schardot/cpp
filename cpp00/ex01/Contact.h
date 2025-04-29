@@ -13,7 +13,9 @@ class Contact {
     std::string darkestSecret;
 
     public:
-    Contact() {};
+    Contact()
+    : firstName(""), lastName(""), nickname(""), phoneNumber(""), darkestSecret("") {}
+
 
     Contact(const std::string& firstNameParam, const std::string& lastNameParam,
             const std::string& nicknameParam, const std::string& phoneNumberParam,
