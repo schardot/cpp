@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cerrno>
+#include <cstring>
 
 std::string replaceIt(std::string line, std::string find, std::string change) {
     size_t pos = 0;
@@ -20,29 +22,34 @@ int main(int ac, char **av)
 {
     if (ac != 4)
     {
-        std::cout << "wrong ac: " << ac << std::endl;
+        std::cout << "Correct usage: ./replace <filename> <find> <replace> " << std::endl;
         return (1);
     }
-    std::string repName = av[1];
-    repName.append(".replace");
+
 
     std::fstream myFile;
-    std::ofstream replaceFile;
 
     myFile.open(av[1]);
-    replaceFile.open(repName.c_str());
 
     std::string line;
     if (myFile.is_open())
     {
+        std::string repName = av[1];
+        repName.append(".replace");
+
+        std::ofstream replaceFile;
+        replaceFile.open(repName.c_str());
         while (std::getline(myFile, line))
         {
             line = replaceIt(line, av[2], av[3]);
             replaceFile << line << std::endl;
         }
+        replaceFile.close();
+    } else {
+        std::cerr << "Failed to open file.\n";
+        std::cerr << "Error: " << std::strerror(errno) << "\n";
     }
 
     myFile.close();
-    replaceFile.close();
     return (0);
 }
