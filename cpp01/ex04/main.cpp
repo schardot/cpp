@@ -26,6 +26,11 @@ int main(int ac, char **av)
         return (1);
     }
 
+    if (std::string(av[2]).empty() || std::string(av[3]).empty())
+    {
+        std::cout << "Error: <find> and <replace> strings must not be empty." << std::endl;
+        return (1);
+    }
 
     std::fstream myFile;
 
