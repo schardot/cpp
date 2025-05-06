@@ -1,10 +1,10 @@
 CPP = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -g
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = fixed
+NAME = harlFilter
 
 all: $(NAME)
 

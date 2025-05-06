@@ -33,6 +33,50 @@ Fixed& Fixed::operator = (const Fixed &obj) {
     return (*this);
 }
 
+bool Fixed::operator< (const Fixed &obj) {
+    return (this->fixedPointNumberValue < obj.fixedPointNumberValue);
+}
+
+bool Fixed::operator> (const Fixed &obj) {
+    return (this->fixedPointNumberValue > obj.fixedPointNumberValue);
+}
+
+bool Fixed::operator<= (const Fixed &obj) {
+    return (this->fixedPointNumberValue <= obj.fixedPointNumberValue);
+}
+
+bool Fixed::operator>= (const Fixed &obj) {
+    return (this->fixedPointNumberValue >= obj.fixedPointNumberValue);
+}
+
+bool Fixed::operator== (const Fixed &obj) {
+    return (this->fixedPointNumberValue == obj.fixedPointNumberValue);
+}
+
+bool Fixed::operator!= (const Fixed &obj) {
+    return (this->fixedPointNumberValue != obj.fixedPointNumberValue);
+}
+
+Fixed Fixed::operator + (const Fixed &obj) {
+
+    return (Fixed(this->fixedPointNumberValue + obj.fixedPointNumberValue));
+}
+
+Fixed Fixed::operator - (const Fixed &obj) {
+
+    return (Fixed(this->fixedPointNumberValue - obj.fixedPointNumberValue));
+}
+
+Fixed Fixed::operator * (const Fixed &obj) {
+
+    return (Fixed(this->fixedPointNumberValue * obj.fixedPointNumberValue));
+}
+
+Fixed Fixed::operator / (const Fixed &obj) {
+
+    return (Fixed(this->fixedPointNumberValue / obj.fixedPointNumberValue));
+}
+
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
@@ -50,7 +94,6 @@ void Fixed::setRawBits(int const raw) {
 float Fixed::toFloat(void) const {
     return ((float)fixedPointNumberValue / 256);
 }
-
 
 int Fixed::toInt(void) const {
     return (fixedPointNumberValue >> 8);
