@@ -1,10 +1,13 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
 
 class Fixed
 {
 private:
-    int fixedPointNumberValue;
-    static const int numOfFractionalBits = 8;
+    int rawBits;
+    static const int fractionalBits = 8;
 public:
     Fixed();
     Fixed(const Fixed &obj);
@@ -15,3 +18,4 @@ public:
     void setRawBits(int const raw);
 };
 
+#endif
