@@ -1,3 +1,6 @@
+#ifndef HARL_HPP
+#define HARL_HPP
+
 #include <iostream>
 
 class Harl
@@ -14,3 +17,5 @@ public:
     void complain(int level);
     void findLevel(std::string level);
 };
+
+#endif
