@@ -4,12 +4,12 @@
 int main()
 {
     std::cout << "=== Constructors ===" << std::endl;
-    Fixed a;         // default
-    Fixed b(10);     // int constructor
-    Fixed c(42.42f); // float constructor
-    Fixed d(b);      // copy constructor
+    Fixed a;
+    Fixed b(10);
+    Fixed c(42.42f);
+    Fixed d(b);
     Fixed e;
-    e = c; // assignment
+    e = c;
 
     std::cout << "\na = " << a << std::endl;
     std::cout << "b = " << b << std::endl;
