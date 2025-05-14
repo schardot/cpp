@@ -7,19 +7,19 @@ ClapTrap::ClapTrap(const std::string &name)
     }
 
 void ClapTrap::attack(const std::string &target){
-    std::cout << "ClapTrap " << this->_name << " is trying to attack!" << std::endl;
+    std::cout << "ClapTrap " << _name << " is trying to attack!" << std::endl;
     if (_energyPoints == 0)
     {
-        std::cout << "FAIL: ClapTrap " << this->_name
+        std::cout << "FAIL: ClapTrap " << _name
                   << " has no energy left to attack!" << std::endl;
         return;
     }
     if (_hitPoints == 0) {
-        std::cout << "FAIL: ClapTrap " << this->_name
+        std::cout << "FAIL: ClapTrap " << _name
                   << " has no hit points left to attack!" << std::endl;
         return;
     }
-    std::cout << "SUCCESS! ClapTrap " << this->_name
+    std::cout << "SUCCESS! ClapTrap " << _name
               << " attacks " << target
               << ", causing " << _attackDamage
               << " points of damage!" << std::endl;
@@ -28,23 +28,35 @@ void ClapTrap::attack(const std::string &target){
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    _hitPoints -= amount;
+    if (_hitPoints <= amount)
+        _hitPoints = 0;
+    else
+        _hitPoints -= amount;
     std::cout << "ClapTrap " << _name
               << " takes " << amount
               << " points of damage!" << std::endl;
-    if (_hitPoints <= 0) {
+    if (_hitPoints == 0) {
         std::cout << "CAREFUL! ClapTrap " << _name
                   << " has 0 hit points!" << std::endl;
     }
-    _energyPoints--;
-
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
+    if (_energyPoints == 0) {
+        std::cout << "FAIL: No energy to repair." << std::endl;
+        return;
+    }
+
+    if (_hitPoints == 0) {
+        std::cout << "FAIL: " << _name << " is dead and can't repair." << std::endl;
+        return;
+    }
+
     std::cout << "ClapTrap " << _name
               << " repaired itself with "
               << amount << " points!" << std::endl;
     _hitPoints += amount;
+    _energyPoints--;
 }
 
 ClapTrap::~ClapTrap() {
