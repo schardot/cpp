@@ -1,10 +1,10 @@
 CPP = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
-SRCS = BasicTests.cpp ClapTrap.cpp
+SRCS = test/BasicTests.cpp src/ClapTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-MEMBER_SRCS = MemberFunctionsTests.cpp ClapTrap.cpp
+MEMBER_SRCS = test/MemberFunctionsTests.cpp src/ClapTrap.cpp
 MEMBER_OBJS = $(MEMBER_SRCS:.cpp=.o)
 
 NAME = exec
