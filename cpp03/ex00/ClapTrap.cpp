@@ -1,10 +1,34 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap()
+    : _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+    std::cout << "Default ClapTrap constructed!" << std::endl;
+}
+
 ClapTrap::ClapTrap(const std::string &name)
     : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
-    {
-        std::cout << "ClapTrap " << _name << " constructed!" << std::endl;
+{
+    std::cout << "ClapTrap " << _name << " constructed!" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &obj)
+    : _name(obj._name), _hitPoints(obj._hitPoints), _energyPoints(obj._energyPoints), _attackDamage(obj._attackDamage)
+{
+    std::cout << "ClapTrap " << _name << " copied from " << obj._name << std::endl;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
+{
+    std::cout << "ClapTrap " << _name << " called copy assignment operator to copy " << obj._name << std::endl;
+    if (this != &obj) {
+        _name = obj._name;
+        _hitPoints = obj._hitPoints;
+        _energyPoints = obj._energyPoints;
+        _attackDamage = obj._attackDamage;
     }
+    return *this;
+}
 
 void ClapTrap::attack(const std::string &target){
     std::cout << "ClapTrap " << _name << " is trying to attack!" << std::endl;
@@ -36,7 +60,7 @@ void ClapTrap::takeDamage(unsigned int amount)
               << " takes " << amount
               << " points of damage!" << std::endl;
     if (_hitPoints == 0) {
-        std::cout << "CAREFUL! ClapTrap " << _name
+        std::cout << "OH NO! ClapTrap " << _name
                   << " has 0 hit points!" << std::endl;
     }
 }
