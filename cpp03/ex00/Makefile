@@ -28,4 +28,4 @@ fclean: clean
 
 re: clean all
 
-phony: all clean fclean re
+phony: all clean fclean re clap
