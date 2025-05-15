@@ -1,19 +1,16 @@
 CPP = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -g
+CFragS = -Wall -Werror -Wextra -std=c++98 -Iinclude -g
 
-SRCS = ScavTest.cpp ClapTrap.cpp ScavTrap.cpp
-OBJS = $(SRCS:.cpp=.o)
+SRC_CORE = src/ClapTrap.cpp src/ScavTrap.cpp
 
-BCLAP_SRCS = BasicTestsClap.cpp ClapTrap.cpp ScavTrap.cpp
+BCLAP_SRCS = test/BasicTestsClap.cpp $(SRC_CORE)
+BSCAV_SRCS = test/BasicTestsScav.cpp $(SRC_CORE)
+MCLAP_SRCS = test/MemberFunctionsClapTest.cpp $(SRC_CORE)
+MSCAV_SRCS = test/MemberFunctionsScavTest.cpp $(SRC_CORE)
+
 BCLAP_OBJS = $(BCLAP_SRCS:.cpp=.o)
-
-BSCAV_SRCS = BasicTestsScav.cpp ClapTrap.cpp ScavTrap.cpp
 BSCAV_OBJS = $(BSCAV_SRCS:.cpp=.o)
-
-MCLAP_SRCS = MemberFunctionsClapTest.cpp ClapTrap.cpp ScavTrap.cpp
 MCLAP_OBJS = $(MCLAP_SRCS:.cpp=.o)
-
-MSCAV_SRCS = MemberFunctionsScavTest.cpp ClapTrap.cpp ScavTrap.cpp
 MSCAV_OBJS = $(MSCAV_SRCS:.cpp=.o)
 
 NAME = exec
@@ -33,10 +30,10 @@ memberscav: $(MSCAV_OBJS)
 	$(CPP) $(MSCAV_OBJS) -o $(NAME)
 
 %.o: %.cpp
-	$(CPP) $(CFLAGS) -c $< -o $@
+	$(CPP) $(CFragS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(BCLAP_OBJS) $(BSCAV_OBJS) $(MCLAP_OBJS) $(MSCAV_OBJS)
+	rm -f $(BCLAP_OBJS) $(BSCAV_OBJS) $(MCLAP_OBJS) $(MSCAV_OBJS)
 
 fclean: clean
 	rm -f $(NAME)
