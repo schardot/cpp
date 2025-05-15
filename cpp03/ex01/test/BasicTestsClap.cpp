@@ -1,12 +1,5 @@
-#include "ClapTrap.hpp"
-
-#define RESET "\033[0m"
-#define DIM "\033[2m"
-#define BOLDYELLOW "\033[1;33m"
-#define CYAN "\033[36m"
-#define GRAY "\033[2;37m"
-#define MAGENTA "\033[35m"
-#define BLUE "\033[34m"
+#include "../include/ClapTrap.hpp"
+#include "../include/Colors.hpp"
 
 int main(void)
 {
