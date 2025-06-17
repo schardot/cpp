@@ -64,3 +64,13 @@ void Bureaucrat::decrementGrade() {
     grade -= 1;
     std::cout << name << "'s grade decremented, now: " << grade << std::endl;
 }
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return "Grade too high! Highest grade possible is 1.";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "Grade too low! Lowest grade possible is 150.";
+}
