@@ -17,7 +17,6 @@ BIN_FORM = FormTest
 
 .PHONY: all clean fclean re bureaucrattest formtest
 
-
 all: bureaucrattest formtest
 
 bureaucrattest: $(OBJ_BUREAUCRAT)
@@ -31,7 +30,8 @@ formtest: $(OBJ_FORM)
 
 clean:
 	rm -f $(OBJ) \
-		$(TEST_BUREAUCRAT:.cpp=.o) \ $(TEST_FORM:.cpp=.o)
+		$(TEST_BUREAUCRAT:.cpp=.o) \
+		$(TEST_FORM:.cpp=.o)
 
 fclean: clean
 	rm -f $(BIN_BUREAUCRAT) $(BIN_FORM)
