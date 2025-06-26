@@ -10,10 +10,10 @@ class Bureaucrat;
 class Form
 {
 private:
-    const std::string name;
-    bool isSigned;
-    const int MinSignGrade;
-    const int MinExecGrade;
+    const std::string _name;
+    bool _isSigned;
+    const int _MinSignGrade;
+    const int _MinExecGrade;
 
     static void validateGrade(int grade);
 
@@ -34,13 +34,13 @@ public:
     class GradeTooHighException : public std::exception
     {
     public:
-        virtual const char *what() const _NOEXCEPT;
+        virtual const char *what() const throw();
     };
 
     class GradeTooLowException : public std::exception
     {
     public:
-        virtual const char *what() const _NOEXCEPT;
+        virtual const char *what() const throw();
     };
 };
 

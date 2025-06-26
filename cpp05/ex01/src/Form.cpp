@@ -1,10 +1,10 @@
 #include "../include/Form.hpp"
 #include "../include/Bureaucrat.hpp"
 
-Form::Form(const std::string &name, int MinSignGrade, int MinExecGrade) : name(name), MinSignGrade(MinSignGrade), MinExecGrade(MinExecGrade) {
+Form::Form(const std::string &name, int MinSignGrade, int MinExecGrade) : _name(name), _MinSignGrade(MinSignGrade), _MinExecGrade(MinExecGrade) {
     validateGrade(MinSignGrade);
     validateGrade(MinExecGrade);
-    isSigned = false;
+    _isSigned = false;
     std::cout << BOLDGREEN << "Form constructed! " << RESET << *this;
 }
 
@@ -13,30 +13,30 @@ Form::~Form()
     std::cout << DIM << GRAY << "Form destructed. " << RESET << *this;
 }
 
-Form::Form(const Form &obj) : name(obj.name), isSigned(obj.isSigned), MinSignGrade(obj.MinSignGrade), MinExecGrade(obj.MinExecGrade) {
+Form::Form(const Form &obj) : _name(obj._name), _isSigned(obj._isSigned), _MinSignGrade(obj._MinSignGrade), _MinExecGrade(obj._MinExecGrade) {
     std::cout << CYAN << "Copy!" << RESET << " New form created. Form is a copy of: " << obj << std::endl;
 }
 
 Form &Form::operator=(const Form &obj) {
     if (this != &obj) {
-        isSigned = obj.isSigned;
-        std::cout << MAGENTA << "Copy assignment operator called!" << RESET << " Now \"" << name << "\" copied \"" << obj.name << "\"'s isSigned bool!" << std::endl;
+        _isSigned = obj._isSigned;
+        std::cout << MAGENTA << "Copy assignment operator called!" << RESET << " Now \"" << _name << "\" copied \"" << obj._name << "\"'s isSigned bool!" << std::endl;
     }
     return *this;
 }
 
-const std::string &Form::getName() const     { return (name); }
-const bool &Form::getIsSigned() const        { return (isSigned); }
-const int &Form::getMinSignGrade() const     { return (MinSignGrade); }
-const int &Form::getMinExecGrade() const     { return (MinExecGrade); }
+const std::string &Form::getName() const     { return (_name); }
+const bool &Form::getIsSigned() const        { return (_isSigned); }
+const int &Form::getMinSignGrade() const     { return (_MinSignGrade); }
+const int &Form::getMinExecGrade() const     { return (_MinExecGrade); }
 
 bool Form::beSigned(const Bureaucrat &obj) {
-    if (obj.getGrade() <= MinSignGrade) {
-        isSigned = true;
+    if (obj.getGrade() <= _MinSignGrade) {
+        _isSigned = true;
     }
     else
         throw GradeTooLowException();
-    return (isSigned);
+    return (_isSigned);
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &obj){

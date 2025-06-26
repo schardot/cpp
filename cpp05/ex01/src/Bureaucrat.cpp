@@ -1,39 +1,43 @@
 #include "../include/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() {
+Bureaucrat::Bureaucrat()
+{
     std::cout << "Default Bureaucrat constructed!" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Bureaucrat destructor called";
-    if (!name.empty())
-        std::cout << " for " << name << " with grade " << grade;
+    if (!_name.empty())
+        std::cout << " for " << _name << " with grade " << _grade;
     std::cout << std::endl;
 }
 
-void Bureaucrat::validateGrade(int grade) {
+void Bureaucrat::validateGrade(int grade)
+{
     if (grade < 1)
         throw(GradeTooHighException());
     else if (grade > 150)
         throw(GradeTooLowException());
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
     validateGrade(grade);
     std::cout << "Bureaucrat " << name << " constructed with grade " << grade << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj) {
-    grade = obj.grade;
-    std::cout << "New Bureaucrat created from copy of Bureaucrat " << name << std::endl;
+Bureaucrat::Bureaucrat(const Bureaucrat &obj)
+{
+    _grade = obj._grade;
+    std::cout << "New Bureaucrat created from copy of Bureaucrat " << _name << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 {
-    if (this != &obj) {
-        this->grade = obj.grade;
+    if (this != &obj)
+    {
+        this->_grade = obj._grade;
     }
     std::cout << "Default Bureaucrat copy assignment called!" << std::endl;
     return (*this);
@@ -45,34 +49,37 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj)
     return out;
 }
 
-const std::string &Bureaucrat::getName() const {
-    return (name);
+const std::string &Bureaucrat::getName() const
+{
+    return (_name);
 }
 
-int Bureaucrat::getGrade() const {
-    return (grade);
+int Bureaucrat::getGrade() const
+{
+    return (_grade);
 }
 
-void Bureaucrat::incrementGrade() {
-    validateGrade(grade + 1);
-    grade += 1;
-    std::cout << name << "'s grade incremented, now: " << grade << std::endl;
+void Bureaucrat::incrementGrade()
+{
+    validateGrade(_grade + 1);
+    _grade += 1;
+    std::cout << _name << "'s grade incremented, now: " << _grade << std::endl;
 }
 
 void Bureaucrat::decrementGrade() {
-    validateGrade(grade - 1);
-    grade -= 1;
-    std::cout << name << "'s grade decremented, now: " << grade << std::endl;
+    validateGrade(_grade - 1);
+    _grade -= 1;
+    std::cout << _name << "'s grade decremented, now: " << _grade << std::endl;
 }
 
 void Bureaucrat::signForm(Form &obj) {
 
     try {
         obj.beSigned(*this);
-        std::cout << name << " signed " << obj.getName() << std::endl;
+        std::cout << _name << " signed " << obj.getName() << std::endl;
     }
     catch (std::exception &e) {
-        std::cout << name << BOLDRED << " couldn't sign " << RESET << obj.getName() << " because " << e.what() << std::endl;
+        std::cout << _name << BOLDRED << " couldn't sign " << RESET << obj.getName() << " because " << e.what() << std::endl;
     }
 }
 
