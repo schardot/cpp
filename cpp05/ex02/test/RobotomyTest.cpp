@@ -4,7 +4,6 @@
 
 int main()
 {
-
     std::cout << RESET << BOLDYELLOW << "\n===== TEST 1: ROBOTOMY REQUEST FORM CONSTRUCTION & DESTRUCTION =====" << RESET << std::endl;
     {
         std::cout << std::endl;

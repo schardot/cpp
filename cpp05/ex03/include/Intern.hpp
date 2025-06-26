@@ -22,4 +22,3 @@ public:
 
     AForm *makeForm(const std::string &formName, const std::string &target);
 };
-

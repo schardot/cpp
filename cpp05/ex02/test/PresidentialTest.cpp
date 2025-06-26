@@ -4,7 +4,6 @@
 
 int main()
 {
-
     std::cout << RESET << BOLDYELLOW << "\n===== TEST 1: PRESIDENTIAL PARDON FORM CONSTRUCTION & DESTRUCTION =====" << RESET << std::endl;
     {
         std::cout << std::endl;
@@ -17,7 +16,6 @@ int main()
         PresidentialPardonForm form2("oi");
         PresidentialPardonForm form2copy(form2);
     }
-
 
     std::cout << RESET << BOLDYELLOW << "\n===== TEST 3: FUNCTIONALITY: SUCESSFULLY SIGN A FORM =====" << RESET << std::endl;
     {

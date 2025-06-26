@@ -10,10 +10,10 @@ class Bureaucrat;
 class AForm
 {
 private:
-    const std::string name;
-    bool isSigned;
-    const int MinSignGrade;
-    const int MinExecGrade;
+    const std::string _name;
+    bool _isSigned;
+    const int _MinSignGrade;
+    const int _MinExecGrade;
 
     static void validateGrade(int grade);
 

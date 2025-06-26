@@ -30,9 +30,13 @@ int main()
     {
         std::cout << std::endl;
         Intern int3;
-        int3.makeForm("shrubbery creation", "target");
-        int3.makeForm("robotomy request", "target");
-        int3.makeForm("presidential pardon", "target");
+        AForm *f = int3.makeForm("shrubbery creation", "target");
+        AForm *f1 = int3.makeForm("robotomy request", "target");
+        AForm *f2 = int3.makeForm("presidential pardon", "target");
+
+        delete f;
+        delete f1;
+        delete f2;
         std::cout << std::endl;
     }
 
@@ -53,14 +57,17 @@ int main()
 
         bur1.signForm(*f1);
         bur1.executeForm(*f1);
+        delete f1;
         std::cout << std::endl;
 
         bur1.signForm(*f2);
         bur1.executeForm(*f2);
+        delete f2;
         std::cout << std::endl;
 
         bur1.signForm(*f3);
         bur1.executeForm(*f3);
+        delete f3;
         std::cout << std::endl;
 
         std::cout << std::endl;
