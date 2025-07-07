@@ -18,24 +18,22 @@ int main()
     alice.equip(cure);
 
     std::cout << "\n\033[1;34m-- Taia uses Materias on Bob --\033[0m\n";
-    alice.use(0, bob); // Ice
-    alice.use(1, bob); // Cure
+    alice.use(0, bob);
+    alice.use(1, bob);
 
     std::cout << "\n\033[1;34m-- Taia unequips Materia at index 1 --\033[0m\n";
     alice.unequip(1);
 
     std::cout << "\n\033[1;34m-- Taia tries to use unequipped slot --\033[0m\n";
-    alice.use(1, bob); // Should do nothing or print nothing
+    alice.use(1, bob);
 
     std::cout << "\n\033[1;34m-- Deep copy Taia to Charlie --\033[0m\n";
     Character charlie = alice;
 
     std::cout << "\n\033[1;34m-- Charlie uses Materia at index 0 on Bob --\033[0m\n";
-    charlie.use(0, bob); // Ice clone from Taia
+    charlie.use(0, bob);
 
     std::cout << "\n\033[1;34m-- Clean up dynamically allocated Materias --\033[0m\n";
-    // We do not delete ice or cure here because equip() takes ownership or makes clones
-    // Ensure your equip implementation manages memory correctly
 
     return 0;
 }

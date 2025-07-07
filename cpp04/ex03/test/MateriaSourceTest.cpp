@@ -1,7 +1,7 @@
 #include "../include/MateriaSource.hpp"
 #include "../include/Ice.hpp"
 #include "../include/Cure.hpp"
-#include "../include/Colors.hpp" // Optional, for colorful output
+#include "../include/Colors.hpp"
 
 #include <iostream>
 
