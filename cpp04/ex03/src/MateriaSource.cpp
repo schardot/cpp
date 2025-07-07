@@ -35,8 +35,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj) {
 
 MateriaSource::~MateriaSource() {
     for (int i = 0; i < 4; i++) {
-        if (_materias[i])
+        if (_materias[i]) {
             delete _materias[i];
+            _materias[i] = NULL;
+        }
     }
     std::cout << "MateriaSource destructed!" << std::endl;
 }
@@ -49,9 +51,11 @@ void MateriaSource::learnMateria(AMateria *m) {
         if (!_materias[i])
         {
             _materias[i] = m->clone();
-            break;
+            delete m; // 💥 FIX: free the original, since you cloned it
+            return;
         }
     }
+    delete m;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type) {

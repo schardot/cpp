@@ -26,8 +26,10 @@ Character &Character::operator=(const Character &obj) {
     if (this != &obj) {
         this->_name = obj.getName();
         for (int i = 0; i < 4; i++) {
-            if (_inventory[i])
+            if (_inventory[i]) {
                 delete _inventory[i];
+                _inventory[i] = NULL;
+            }
             _inventory[i] = obj._inventory[i] ? obj._inventory[i]->clone() : NULL;
         }
         std::cout << "Copy assignment called for Character!" << std::endl;
@@ -36,6 +38,14 @@ Character &Character::operator=(const Character &obj) {
 }
 
 Character::~Character() {
+    for (int i = 0; i < 4; i++)
+    {
+        if (_inventory[i])
+        {
+            delete _inventory[i];
+            _inventory[i] = NULL;
+        }
+    }
     std::cout << "Character destructed!" << std::endl;
 }
 
@@ -56,6 +66,7 @@ void Character::equip(AMateria *m) {
         if (!_inventory[i])
         {
             _inventory[i] = m->clone();
+            delete m;
             std::cout << getName() << " equiped " << _inventory[i]->getType() << " at " << i << std::endl;
             return;
         }
@@ -67,8 +78,11 @@ void Character::unequip(int idx) {
         std::cout << "Invalid index" << std::endl;
         return;
     }
+
     std::cout << getName() << " unequiped " << _inventory[idx]->getType() << " at slot" << idx << std::endl;
-    for (; idx < 3; idx++) {
+    delete _inventory[idx];
+    for (; idx < 3; idx++)
+    {
         _inventory[idx] = _inventory[idx + 1];
     }
     _inventory[3] = NULL;
