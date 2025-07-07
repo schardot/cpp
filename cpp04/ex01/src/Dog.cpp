@@ -9,10 +9,11 @@ Dog::Dog()
 
 Dog::Dog(const Dog &obj) : Animal(obj)
 {
+    _type = "Dog";
     if (obj.dogBrain)
         dogBrain = new Brain(*obj.dogBrain);
     else
-        dogBrain = nullptr;
+        dogBrain = NULL;
     std::cout << "Dog copied!" << std::endl;
 }
 
@@ -26,7 +27,7 @@ Dog &Dog::operator=(const Dog &obj)
         if (obj.dogBrain)
             dogBrain = new Brain(*obj.dogBrain);
         else
-            dogBrain = nullptr;
+            dogBrain = NULL;
         std::cout << "Dog copied using copy assignment!" << std::endl;
     }
     return *this;

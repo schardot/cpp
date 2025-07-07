@@ -17,7 +17,7 @@ Character::Character(std::string const &name) : ICharacter(), _name(name) {
 Character::Character(const Character &obj) {
     this->_name = obj.getName();
     for (int i = 0; i < 4; i ++) {
-        _inventory[i] = obj._inventory[i] ? obj._inventory[i]->clone() : nullptr;
+        _inventory[i] = obj._inventory[i] ? obj._inventory[i]->clone() : NULL;
     }
     std::cout << "Character copied!" << std::endl;
 }
@@ -28,7 +28,7 @@ Character &Character::operator=(const Character &obj) {
         for (int i = 0; i < 4; i++) {
             if (_inventory[i])
                 delete _inventory[i];
-            _inventory[i] = obj._inventory[i] ? obj._inventory[i]->clone() : nullptr;
+            _inventory[i] = obj._inventory[i] ? obj._inventory[i]->clone() : NULL;
         }
         std::cout << "Copy assignment called for Character!" << std::endl;
     }
@@ -71,7 +71,7 @@ void Character::unequip(int idx) {
     for (; idx < 3; idx++) {
         _inventory[idx] = _inventory[idx + 1];
     }
-    _inventory[3] = nullptr;
+    _inventory[3] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target) {

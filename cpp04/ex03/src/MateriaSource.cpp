@@ -2,7 +2,7 @@
 
 MateriaSource::MateriaSource() {
     for (int i = 0; i < 4; ++i) {
-        _materias[i] = nullptr;
+        _materias[i] = NULL;
     }
     std::cout << "Default MateriaSource constructed!" << std::endl;
 };

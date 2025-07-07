@@ -7,6 +7,7 @@ int main(void)
     {
         std::cout << CYAN;
         Cat a1;
+        std::cout << GRAY << "Type is: " << GREEN << a1.getType() << std::endl;
         std::cout << DIM << GRAY;
     }
 
@@ -14,8 +15,12 @@ int main(void)
     {
         std::cout << CYAN;
         Cat a2;
+        std::cout << GRAY << "Type is: " << GREEN << a2.getType() << std::endl;
+
         std::cout << MAGENTA;
         Cat a2copy(a2);
+        std::cout << GRAY << "Type is: " << GREEN << a2.getType() << std::endl;
+
         std::cout << DIM << GRAY;
     }
 

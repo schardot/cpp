@@ -9,10 +9,11 @@ Cat::Cat()
 
 Cat::Cat(const Cat &obj) : Animal(obj)
 {
+    _type = "Cat";
     if (obj.catBrain)
         catBrain = new Brain(*obj.catBrain);
     else
-        catBrain = nullptr;
+        catBrain = NULL;
     std::cout << "Cat copied!" << std::endl;
 }
 
@@ -26,7 +27,7 @@ Cat &Cat::operator=(const Cat &obj)
         if (obj.catBrain)
             catBrain = new Brain(*obj.catBrain);
         else
-            catBrain = nullptr;
+            catBrain = NULL;
         std::cout << "Dog copied using copy assignment!" << std::endl;
     }
     return *this;

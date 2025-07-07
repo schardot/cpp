@@ -8,6 +8,7 @@ Cat::Cat()
 
 Cat::Cat(const Cat &obj) : Animal(obj)
 {
+    _type = "Cat";
     std::cout << "Cat copied!" << std::endl;
 }
 

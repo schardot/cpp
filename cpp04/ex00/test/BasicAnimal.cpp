@@ -7,6 +7,7 @@ int main(void)
     {
         std::cout << CYAN;
         Animal a1;
+        std::cout << GRAY << "Type is: " << GREEN << a1.getType() << std::endl;
         std::cout << DIM << GRAY;
     }
 

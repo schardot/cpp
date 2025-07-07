@@ -7,7 +7,7 @@
 
 int main()
 {
-    const int size = 6; // even number
+    const int size = 6;
     Animal *animals[size];
 
     std::cout << BOLDYELLOW << "\n===== TEST: Creating Animals array =====" << RESET << std::endl;
@@ -32,6 +32,7 @@ int main()
     std::cout << MAGENTA << "Copied dog's first idea: " << copiedDog->getBrain()->getIdea(0) << RESET << std::endl;
 
     copiedDog->getBrain()->setIdea(0, "Changed copied dog idea");
+    std::cout << CYAN << "Copied DOG's new idea: " << copiedDog->getBrain()->getIdea(0) << RESET << std::endl;
     std::cout << GREEN << "Original dog's first idea after copy changed: " << originalDog->getBrain()->getIdea(0) << RESET << std::endl;
 
     delete originalDog;
@@ -45,6 +46,7 @@ int main()
     std::cout << MAGENTA << "Copied cat's first idea: " << copiedCat->getBrain()->getIdea(0) << RESET << std::endl;
 
     copiedCat->getBrain()->setIdea(0, "Changed copied cat idea");
+    std::cout << CYAN << "Copied cat's new idea: " << copiedCat->getBrain()->getIdea(0) << RESET << std::endl;
     std::cout << GREEN << "Original cat's first idea after copy changed: " << originalCat->getBrain()->getIdea(0) << RESET << std::endl;
 
     delete originalCat;

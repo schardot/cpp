@@ -7,6 +7,7 @@ int main(void)
     {
         std::cout << CYAN;
         Dog a1;
+        std::cout << GRAY << "Type is: " << GREEN << a1.getType() << std::endl;
         std::cout << DIM << GRAY;
     }
 
@@ -14,8 +15,10 @@ int main(void)
     {
         std::cout << CYAN;
         Dog a2;
+        std::cout << GRAY << "Type is: " << GREEN << a2.getType() << std::endl;
         std::cout << MAGENTA;
         Dog a2copy(a2);
+        std::cout << GRAY << "Type is: " << GREEN << a2.getType() << std::endl;
         std::cout << DIM << GRAY;
     }
 

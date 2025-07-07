@@ -8,6 +8,7 @@ WrongCat::WrongCat()
 
 WrongCat::WrongCat(const WrongCat &obj) : WrongAnimal(obj)
 {
+    _type = "WrongCat";
     std::cout << "WrongCat copied!" << std::endl;
 }
 
