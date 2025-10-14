@@ -18,4 +18,3 @@ public:
 
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &obj);
 };
-std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &obj);

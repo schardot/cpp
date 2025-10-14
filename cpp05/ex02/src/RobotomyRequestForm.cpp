@@ -23,14 +23,6 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     return *this;
 }
 
-std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm &obj) {
-    std::cout << "Type: " << BOLDWHITE << obj.getName() << RESET
-              << ", signed: " << BOLDWHITE << std::boolalpha << obj.getIsSigned() << RESET
-              << ", sign grade: " << BOLDWHITE << obj.getMinSignGrade() << RESET
-              << ", execution grade: " << BOLDWHITE << obj.getMinExecGrade() << RESET << std::endl;
-    return (out);
-}
-
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
     validateExecutionRequirements(executor);
     std::cout << "* Drilling noises *" << std::endl;

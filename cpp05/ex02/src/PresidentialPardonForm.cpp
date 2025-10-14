@@ -23,14 +23,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     return *this;
 }
 
-std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &obj) {
-    std::cout << "Type: " << BOLDWHITE << obj.getName() << RESET
-              << ", signed: " << BOLDWHITE << std::boolalpha << obj.getIsSigned() << RESET
-              << ", sign grade: " << BOLDWHITE << obj.getMinSignGrade() << RESET
-              << ", execution grade: " << BOLDWHITE << obj.getMinExecGrade() << RESET << std::endl;
-    return (out);
-}
-
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const {
     validateExecutionRequirements(executor);
     std::cout << target_ << " has been pardoned by Zaphod Beeblebrox." << std::endl;

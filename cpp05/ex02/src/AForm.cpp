@@ -40,7 +40,7 @@ bool AForm::beSigned(const Bureaucrat &obj) {
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &obj){
-    std::cout << "AForm " << BOLDWHITE << obj.getName() << RESET
+    std::cout << "AForm type " << BOLDWHITE << obj.getName() << RESET
               << ", signed: " << BOLDWHITE << std::boolalpha << obj.getIsSigned() << RESET
               << ", sign grade: " << BOLDWHITE << obj.getMinSignGrade() << RESET
               << ", execution grade: " << BOLDWHITE << obj.getMinExecGrade() << RESET << std::endl;
@@ -67,7 +67,7 @@ const char *AForm::GradeTooLowException::what() const throw()
 
 const char *AForm::FormNotSignedException::what() const throw()
 {
-    return "Form not signed! Form must signed in order to execute.";
+    return "Form not signed! Form must be signed in order to execute.";
 }
 
 void AForm::validateExecutionRequirements(Bureaucrat const &executor) const {
