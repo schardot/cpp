@@ -10,10 +10,10 @@ class Bureaucrat;
 class Form
 {
 private:
-    const std::string _name;
-    bool _isSigned;
-    const int _MinSignGrade;
-    const int _MinExecGrade;
+    const std::string name_;
+    bool isSigned_;
+    const int MinSignGrade_;
+    const int MinExecGrade_;
 
     static void validateGrade(int grade);
 
@@ -24,10 +24,10 @@ public:
     Form(const Form &obj);
     Form &operator=(const Form &obj);
 
-    const std::string &getName() const;
-    const bool &getIsSigned() const;
-    const int &getMinSignGrade() const;
-    const int &getMinExecGrade() const;
+    const std::string &getName() const { return (name_); }
+    const bool &getIsSigned() const { return (isSigned_); }
+    const int &getMinSignGrade() const { return (MinSignGrade_); }
+    const int &getMinExecGrade() const { return (MinExecGrade_); }
 
     bool beSigned(const Bureaucrat &b);
 
