@@ -53,25 +53,30 @@ int Bureaucrat::getGrade() const {
     return (grade_);
 }
 
-void Bureaucrat::incrementGrade() {
-    validateGrade(grade_ + 1);
-    grade_ += 1;
+void Bureaucrat::incrementGrade()
+{
+    validateGrade(grade_ - 1);
+    grade_ -= 1;
     std::cout << name_ << "'s grade incremented, now: " << grade_ << std::endl;
 }
 
-void Bureaucrat::decrementGrade() {
-    validateGrade(grade_ - 1);
-    grade_ -= 1;
+void Bureaucrat::decrementGrade()
+{
+    validateGrade(grade_ + 1);
+    grade_ += 1;
     std::cout << name_ << "'s grade decremented, now: " << grade_ << std::endl;
 }
 
-void Bureaucrat::signForm(AForm &obj) {
+void Bureaucrat::signForm(AForm &obj)
+{
 
-    try {
+    try
+    {
         obj.beSigned(*this);
-        std::cout << name_ << BOLDBLUE << " signed " << RESET << obj.getName() << std::endl;
+        std::cout << name_ << " signed " << obj.getName() << std::endl;
     }
-    catch (std::exception &e) {
+    catch (std::exception &e)
+    {
         std::cout << name_ << BOLDRED << " couldn't sign " << RESET << obj.getName() << " because " << e.what() << std::endl;
     }
 }
