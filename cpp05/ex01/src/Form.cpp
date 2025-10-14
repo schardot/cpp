@@ -26,8 +26,11 @@ Form &Form::operator=(const Form &obj) {
 }
 
 bool Form::beSigned(const Bureaucrat &obj) {
-    if (obj.getGrade() <= _MinSignGrade) {
-        _isSigned = true;
+    if (obj.getGrade() <= MinSignGrade_) {
+        if (isSigned_)
+            std::cout << obj.getName() << " couln't sign " << name_ << " because it's already signed.";
+        else
+        isSigned_ = true;
     }
     else
         throw GradeTooLowException();
