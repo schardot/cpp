@@ -61,15 +61,16 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
-    validateGrade(_grade + 1);
-    _grade += 1;
-    std::cout << _name << "'s grade incremented, now: " << _grade << std::endl;
+    validateGrade(grade_ - 1);
+    grade_ -= 1;
+    std::cout << name_ << "'s grade incremented, now: " << grade_ << std::endl;
 }
 
-void Bureaucrat::decrementGrade() {
-    validateGrade(_grade - 1);
-    _grade -= 1;
-    std::cout << _name << "'s grade decremented, now: " << _grade << std::endl;
+void Bureaucrat::decrementGrade()
+{
+    validateGrade(grade_ + 1);
+    grade_ += 1;
+    std::cout << name_ << "'s grade decremented, now: " << grade_ << std::endl;
 }
 
 void Bureaucrat::signForm(Form &obj) {
