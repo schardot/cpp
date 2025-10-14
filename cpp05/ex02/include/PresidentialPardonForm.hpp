@@ -7,7 +7,7 @@
 class PresidentialPardonForm : public AForm
 {
 private:
-    std::string _target;
+    std::string target_;
     virtual void execute(Bureaucrat const &executor) const;
 
 public:
@@ -18,4 +18,3 @@ public:
 
     PresidentialPardonForm &operator=(const PresidentialPardonForm &obj);
 };
-std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &obj);

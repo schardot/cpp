@@ -7,7 +7,7 @@
 class ShrubberyCreationForm : public AForm
 {
 private:
-    std::string _target;
+    std::string target_;
     virtual void execute(Bureaucrat const &executor) const;
 
 public:
@@ -18,4 +18,3 @@ public:
 
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &obj);
 };
-std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &obj);

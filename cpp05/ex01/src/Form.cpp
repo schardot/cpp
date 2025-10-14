@@ -1,10 +1,10 @@
 #include "../include/Form.hpp"
 #include "../include/Bureaucrat.hpp"
 
-Form::Form(const std::string &name, int MinSignGrade, int MinExecGrade) : _name(name), _MinSignGrade(MinSignGrade), _MinExecGrade(MinExecGrade) {
+Form::Form(const std::string &name, int MinSignGrade, int MinExecGrade)
+    : name_(name), isSigned_(false), MinSignGrade_(MinSignGrade), MinExecGrade_(MinExecGrade) {
     validateGrade(MinSignGrade);
     validateGrade(MinExecGrade);
-    _isSigned = false;
     std::cout << BOLDGREEN << "Form constructed! " << RESET << *this;
 }
 
@@ -13,30 +13,28 @@ Form::~Form()
     std::cout << DIM << GRAY << "Form destructed. " << RESET << *this;
 }
 
-Form::Form(const Form &obj) : _name(obj._name), _isSigned(obj._isSigned), _MinSignGrade(obj._MinSignGrade), _MinExecGrade(obj._MinExecGrade) {
+Form::Form(const Form &obj) : name_(obj.name_), isSigned_(obj.isSigned_), MinSignGrade_(obj.MinSignGrade_), MinExecGrade_(obj.MinExecGrade_) {
     std::cout << CYAN << "Copy!" << RESET << " New form created. Form is a copy of: " << obj << std::endl;
 }
 
 Form &Form::operator=(const Form &obj) {
     if (this != &obj) {
-        _isSigned = obj._isSigned;
-        std::cout << MAGENTA << "Copy assignment operator called!" << RESET << " Now \"" << _name << "\" copied \"" << obj._name << "\"'s isSigned bool!" << std::endl;
+        isSigned_ = obj.isSigned_;
+        std::cout << MAGENTA << "Copy assignment operator called!" << RESET << " \"" << name_ << "\" copied \"" << obj.name_ << "\"." << std::endl;
     }
     return *this;
 }
 
-const std::string &Form::getName() const     { return (_name); }
-const bool &Form::getIsSigned() const        { return (_isSigned); }
-const int &Form::getMinSignGrade() const     { return (_MinSignGrade); }
-const int &Form::getMinExecGrade() const     { return (_MinExecGrade); }
-
 bool Form::beSigned(const Bureaucrat &obj) {
-    if (obj.getGrade() <= _MinSignGrade) {
-        _isSigned = true;
+    if (obj.getGrade() <= MinSignGrade_) {
+        if (isSigned_)
+            std::cout << obj.getName() << " couln't sign " << name_ << " because it's already signed.";
+        else
+        isSigned_ = true;
     }
     else
         throw GradeTooLowException();
-    return (_isSigned);
+    return (isSigned_);
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &obj){

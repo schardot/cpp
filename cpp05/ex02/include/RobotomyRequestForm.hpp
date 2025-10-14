@@ -9,7 +9,7 @@
 class RobotomyRequestForm : public AForm
 {
 private:
-    std::string _target;
+    std::string target_;
     virtual void execute(Bureaucrat const &executor) const;
 
 public:
@@ -20,4 +20,3 @@ public:
 
     RobotomyRequestForm &operator=(const RobotomyRequestForm &obj);
 };
-std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm &obj);

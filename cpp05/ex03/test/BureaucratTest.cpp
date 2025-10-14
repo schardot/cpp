@@ -48,7 +48,7 @@ int main()
     std::cout << RESET << BOLDYELLOW << "\n===== TEST 6: FUNCIONALITY: INCREMENT AND DECREMENT GRADE =====" << RESET << std::endl;
     {
         std::cout << CYAN;
-        Bureaucrat a6("A6", 100);
+        Bureaucrat a6("A6", 3);
         std::cout << BOLDGREEN;
         a6.incrementGrade();
         std::cout << BOLDYELLOW;
@@ -60,9 +60,7 @@ int main()
     {
         try
         {
-            std::cout << BRIGHT_CYAN;
             Bureaucrat a7("A7", 0);
-            std::cout << DIM << GRAY;
         }
         catch (std::exception &e)
         {
@@ -70,28 +68,26 @@ int main()
         }
     }
 
-    std::cout << RESET << BOLDYELLOW << "\n===== TEST 8: HIGH EXCEPTION: DECREMENTING HIGHEST GRADE =====" << RESET << std::endl;
+    std::cout << RESET << BOLDYELLOW << "\n===== TEST 8: HIGH EXCEPTION: INCREMENTING HIGHEST GRADE =====" << RESET << std::endl;
     {
+        std::cout << CYAN;
+        Bureaucrat a8("A8", 1);
         try
         {
-            std::cout << BRIGHT_BLUE;
-            Bureaucrat a8("A8", 1);
-            a8.decrementGrade();
-            std::cout << DIM << GRAY;
+            a8.incrementGrade();
         }
         catch (std::exception &e)
         {
             std::cout << BOLDRED << "Caught exception: " << e.what() << RESET << std::endl;
         }
+        std::cout << DIM << GRAY;
     }
 
     std::cout << RESET << BOLDYELLOW << "\n===== TEST 9: LOW EXCEPTION: INITIALIZING WITH BELOW MINUMUM GRADE (151) =====" << RESET << std::endl;
     {
         try
         {
-            std::cout << BRIGHT_MAGENTA;
             Bureaucrat a9("A9", 151);
-            std::cout << DIM << GRAY;
         }
         catch (std::exception &e)
         {
@@ -99,19 +95,19 @@ int main()
         }
     }
 
-    std::cout << RESET << BOLDYELLOW << "\n===== TEST 10: LOW EXCEPTION: INCREMENTING MINIMUM GRADE =====" << RESET << std::endl;
+    std::cout << RESET << BOLDYELLOW << "\n===== TEST 10: LOW EXCEPTION: DECREMENTING MINIMUM GRADE =====" << RESET << std::endl;
     {
+        std::cout << CYAN;
+        Bureaucrat a10("A10", 150);
         try
         {
-            std::cout << BRIGHT_GREEN;
-            Bureaucrat a10("A10", 150);
-            a10.incrementGrade();
-            std::cout << DIM << GRAY;
+            a10.decrementGrade();
         }
         catch (std::exception &e)
         {
             std::cout << BOLDRED << "Caught exception: " << e.what() << RESET << std::endl;
         }
+        std::cout << DIM << GRAY;
     }
 
     std::cout << RESET << std::endl;
