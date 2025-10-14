@@ -20,4 +20,3 @@ public:
 
     RobotomyRequestForm &operator=(const RobotomyRequestForm &obj);
 };
-std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm &obj);

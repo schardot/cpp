@@ -18,17 +18,9 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     if (this != &obj) {
         AForm::operator=(obj);
         target_ = obj.target_;
-        std::cout << MAGENTA << "Copy assignment operator called!" << RESET << " Note that there's nothing unique to this form to be copied." << std::endl;
+        std::cout << MAGENTA << "Copy assignment operator called!" << RESET << std::endl;
     }
     return *this;
-}
-
-std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &obj) {
-    std::cout << "Type: " << BOLDWHITE << obj.getName() << RESET
-              << ", signed: " << BOLDWHITE << std::boolalpha << obj.getIsSigned() << RESET
-              << ", sign grade: " << BOLDWHITE << obj.getMinSignGrade() << RESET
-              << ", execution grade: " << BOLDWHITE << obj.getMinExecGrade() << RESET << std::endl;
-    return (out);
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const {

@@ -18,4 +18,3 @@ public:
 
     PresidentialPardonForm &operator=(const PresidentialPardonForm &obj);
 };
-std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &obj);
