@@ -2,23 +2,32 @@
 #include "../include/Colors.hpp"
 #include "../include/Form.hpp"
 
+static void printTestLine(std::string num, std::string message)
+{
+    std::cout << std::endl
+              << RESET << BOLDYELLOW << "\n===== TEST "
+              << num << ": "
+              << message
+              << " ===== " << RESET << std::endl;
+}
+
 int main()
 {
 
-    std::cout << RESET << BOLDYELLOW << "\n===== TEST 1: FUNCTIONALITY: NAMED FORM CONSTRUCTION & DESTRUCTION =====" << RESET << std::endl;
+    printTestLine("1", "FUNCTIONALITY –  NAMED FORM CONSTRUCTION & DESTRUCTION");
     {
         std::cout << std::endl;
         Form form1("Form 1", 20, 50);
     }
 
-    std::cout << std::endl << RESET << BOLDYELLOW << "\n===== TEST 2: FUNCTIONALITY: FORM COPY CONSTRUCTOR =====" << RESET << std::endl;
+    printTestLine("2", "FUNCTIONALITY – FORM COPY CONSTRUCTOR");
     {
         std::cout << std::endl;
         Form form2("Form 2", 10, 2);
         Form form2copy(form2);
     }
 
-    std::cout << std::endl << RESET << BOLDYELLOW << "\n===== TEST 3: FUNCTIONALITY: OPERATOR << OVERLOAD =====" << RESET << std::endl;
+    printTestLine("3", "FUNCTIONALITY – OPERATOR << OVERLOAD");
     {
         std::cout << std::endl;
         Form form5("Form 5", 5, 5);
@@ -26,7 +35,7 @@ int main()
         std::cout << std::endl;
     }
 
-    std::cout << std::endl << RESET << BOLDYELLOW << "\n===== TEST 4: FUNCTIONALITY: SUCESSFULLY SIGN A FORM WITH EXACT GRADE =====" << RESET << std::endl;
+    printTestLine("4", "FUNCTIONALITY – SUCESSFULLY SIGN A FORM WITH EXACT GRADE");
     {
         std::cout << std::endl;
         Form form6("Form 6", 100, 100);
@@ -35,7 +44,7 @@ int main()
         std::cout << std::endl;
     }
 
-    std::cout << std::endl << RESET << BOLDYELLOW << "\n===== TEST 5: FUNCTIONALITY: FORM COPY ASSIGNMENT WITH DIFFERENT BOOLS =====" << RESET << std::endl;
+    printTestLine("5", "FUNCTIONALITY – FORM COPY ASSIGNMENT WITH DIFFERENT BOOLS");
     {
         std::cout << std::endl;
         Form form7("Form 7", 100, 100);
@@ -45,7 +54,7 @@ int main()
         aux = form7;
     }
 
-    std::cout << std::endl << RESET << BOLDYELLOW << "\n===== TEST 6: ERROR: TRYING TO SIGN A FORM WITH NOT ENOUGH GRADE =====" << RESET << std::endl;
+    printTestLine("6", "ERROR – TRYING TO SIGN A FORM WITH NOT ENOUGH GRADE");
     {
         try
         {
@@ -61,5 +70,36 @@ int main()
         }
     }
 
+    printTestLine("7", "ERROR – SIGNING AN ALREADY SIGNED FORM");
+    {
+        Form f("DoubleSign", 100, 100);
+        Bureaucrat b("Signer", 50);
+
+        b.signForm(f);
+        b.signForm(f);
+    }
+
+    printTestLine("8", "ERROR – FORM CREATION WITH INVALID GRADES");
+    {
+        try
+        {
+            Form f1("InvalidHigh", 0, 10);
+        }
+        catch (std::exception &e)
+        {
+            std::cout << BOLDRED << "Caught exception: " << e.what() << RESET << std::endl;
+        }
+
+        try
+        {
+            Form f2("InvalidLow", 100, 151);
+        }
+        catch (std::exception &e)
+        {
+            std::cout << BOLDRED << "Caught exception: " << e.what() << RESET << std::endl;
+        }
+    }
+
+    std::cout << RESET << std::endl;
     return 0;
 }
