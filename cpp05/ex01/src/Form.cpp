@@ -5,7 +5,6 @@ Form::Form(const std::string &name, int MinSignGrade, int MinExecGrade)
     : name_(name), isSigned_(false), MinSignGrade_(MinSignGrade), MinExecGrade_(MinExecGrade) {
     validateGrade(MinSignGrade);
     validateGrade(MinExecGrade);
-    _isSigned = false;
     std::cout << BOLDGREEN << "Form constructed! " << RESET << *this;
 }
 
