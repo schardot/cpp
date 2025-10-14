@@ -1,7 +1,7 @@
 #include "../include/ShrubberyCreationForm.hpp"
 #include "../include/Bureaucrat.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("ShrubberyCreationForm", 145, 137), target_(target) {
     std::cout << BOLDGREEN << "ShrubberyCreationForm constructed! " << std::endl << RESET;
 }
 
@@ -10,14 +10,14 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     std::cout << DIM << GRAY << "ShrubberyCreationForm destructed. " << std::endl << RESET;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm(obj), _target(obj._target) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm(obj), target_(obj.target_) {
     std::cout << CYAN << "Copy!" << RESET << " New " << obj.getName() << " created." << std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &obj) {
     if (this != &obj) {
         AForm::operator=(obj);
-        _target = obj._target;
+        target_ = obj.target_;
         std::cout << MAGENTA << "Copy assignment operator called!" << RESET << " Note that there's nothing unique to this form to be copied." << std::endl;
     }
     return *this;
@@ -33,7 +33,7 @@ std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &obj) {
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
     validateExecutionRequirements(executor);
-    std::ofstream myFile((_target + "_shrubbery").c_str());
+    std::ofstream myFile((target_ + "_shrubbery").c_str());
     if (myFile) {
         myFile << "        /\\ \n"
                   "       /**\\ \n"
