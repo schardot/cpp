@@ -8,8 +8,8 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Bureaucrat destructor called";
-    if (!_name.empty())
-        std::cout << " for " << _name << " with grade " << _grade;
+    if (!name_.empty())
+        std::cout << " for " << name_ << " with grade " << grade_;
     std::cout << std::endl;
 }
 
@@ -21,7 +21,7 @@ void Bureaucrat::validateGrade(int grade)
         throw(GradeTooLowException());
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : name_(name), grade_(grade)
 {
     validateGrade(grade);
     std::cout << "Bureaucrat " << name << " constructed with grade " << grade << std::endl;
@@ -29,15 +29,15 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj)
 {
-    _grade = obj._grade;
-    std::cout << "New Bureaucrat created from copy of Bureaucrat " << _name << std::endl;
+    grade_ = obj.grade_;
+    std::cout << "New Bureaucrat created from copy of Bureaucrat " << name_ << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 {
     if (this != &obj)
     {
-        this->_grade = obj._grade;
+        this->grade_ = obj.grade_;
     }
     std::cout << "Default Bureaucrat copy assignment called!" << std::endl;
     return (*this);
@@ -51,12 +51,12 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj)
 
 const std::string &Bureaucrat::getName() const
 {
-    return (_name);
+    return (name_);
 }
 
 int Bureaucrat::getGrade() const
 {
-    return (_grade);
+    return (grade_);
 }
 
 void Bureaucrat::incrementGrade()
@@ -76,10 +76,10 @@ void Bureaucrat::signForm(Form &obj) {
 
     try {
         obj.beSigned(*this);
-        std::cout << _name << " signed " << obj.getName() << std::endl;
+        std::cout << name_ << " signed " << obj.getName() << std::endl;
     }
     catch (std::exception &e) {
-        std::cout << _name << BOLDRED << " couldn't sign " << RESET << obj.getName() << " because " << e.what() << std::endl;
+        std::cout << name_ << BOLDRED << " couldn't sign " << RESET << obj.getName() << " because " << e.what() << std::endl;
     }
 }
 

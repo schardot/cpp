@@ -10,8 +10,8 @@ class Form;
 class Bureaucrat
 {
 private:
-    const std::string _name;
-    int _grade;
+    const std::string name_;
+    int grade_;
 
     static void validateGrade(int grade);
 
