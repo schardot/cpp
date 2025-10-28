@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+cpp05/ex00/BureaucratTest
+cpp05/ex01/BureaucratTest
+.gitignore
+cpp05/ex02/BureaucratTestBin
+cpp05/ex02/PresidentialTestBin
+cpp05/ex02/RobotomyTestBin
+cpp05/ex02/ShrubTestBin
+cpp05/ex02/test/PresidentialTest.cpp
+cpp05/ex01/FormTest
