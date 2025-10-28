@@ -66,8 +66,9 @@ bool ScalarConverter::isInt(const std::string &arg)
     int n = std::atoi(arg.c_str());
 
     if (arg != "0" && n == 0) {
-        return false;
+        return (false);
     }
+
     int len = arg.length();
 
     for (int i = 0; i < len; i ++) {

@@ -1,13 +1,11 @@
 CPP = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Iinclude -g
 
-NAME = scalar
-SRC = tests/main.cpp src/ScalarConverter.cpp
+SRC = src/main.cpp
 OBJ = $(SRC:.cpp=.o)
+NAME = whatever
 
-.PHONY: all clean fclean re
-
-all =  $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
@@ -22,3 +20,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
