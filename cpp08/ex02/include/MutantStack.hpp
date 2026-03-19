@@ -1,22 +1,17 @@
 #pragma once
+
 #include <stack>
 
 template <typename T>
-class MutantStack : public std::stack<T>
-{
+class MutantStack : public std::stack<T> {
 public:
-    MutantStack() {}
-    MutantStack(const MutantStack &obj) : std::stack<T>(obj) {}
-    MutantStack &operator=(const MutantStack &obj)
-    {
-        if (this != &obj)
-            std::stack<T>::operator=(obj);
-        return *this;
-    }
-    ~MutantStack() {}
+    typedef typename std::stack<T>::container_type::iterator iterator;
+    typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-    typedef typename std::stack<T>::container_type::iterator IT;
-    IT begin() { return this->c.begin(); };
-    IT end() { return this -> c.end(); };
+    iterator begin() { return this->c.begin(); };
+    iterator end() { return this->c.end(); };
+
+    const_iterator begin() const { return this->c.begin(); };
+    const_iterator end() const { return this->c.end(); };
 };
 

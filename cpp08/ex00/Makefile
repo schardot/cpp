@@ -1,8 +1,8 @@
 CPP = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Iinclude -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -g
 
 NAME = easyfind
-SRC = src/main.cpp
+SRC = src/main.cpp src/tester.cpp
 OBJ = $(SRC:.cpp=.o)
 
 .PHONY: all clean fclean re

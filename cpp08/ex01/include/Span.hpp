@@ -1,37 +1,36 @@
 #pragma once
+
+#include <ostream>
 #include <vector>
-#include <iterator>
-#include <stdexcept>
-#include <algorithm>
 
-class Span
-{
-private:
-    std::vector<int> v_;
-    unsigned int n_;
-public:
-    Span();
-    Span(unsigned int n);
-    Span(const Span &obj);
-    const Span &operator=(const Span &obj);
-    ~Span() {};
+class Span {
+	private:
+		unsigned int N;
+		std::vector<int> arr;
 
-    const std::vector<int> getNumbers();
-    void addNumber(int x);
-    int shortestSpan();
-    int longestSpan();
+	public:
 
-    template <typename IT>
-    void addRange(IT begin, IT end)
-    {
-        size_t distance = std::distance(begin, end);
+		Span() {};
+		Span(unsigned int n): N(n) {};
+		Span(const Span &other) : N(other.N), arr(other.arr) {}
+		Span &operator=(const Span &other);
 
-        if (v_.size() + distance > n_)
-            throw std::runtime_error("Not enough space to add all range");
+		void addNumber(int num);
 
-        v_.insert(v_.end(), begin, end);
-    }
+		int shortestSpan() const;
+
+		int longestSpan() const;
+
+		template <typename Iterator>
+		void addRange(Iterator begin, Iterator end) {
+			size_t distance = std::distance(begin, end);
+
+			if (arr.size() + distance > N)
+				throw std::length_error("not enough space");
+			arr.insert(arr.end(), begin, end);
+		}
+
+		inline const std::vector<int> &getArr() const { return arr; }
 };
 
-std::ostream &operator<<(std::ostream &os, Span &obj);
-
+std::ostream &operator<<(std::ostream &os, const Span &s);

@@ -1,92 +1,61 @@
-#include <iostream>
-#include <vector>
-#include <list>
+#include "../include/tester.hpp"
 #include <deque>
-#include "easyfind.hpp"
+#include <list>
+#include <vector>
 
-int main()
-{
-    // ===== VECTOR =====
-    std::cout << "===== VECTOR =====" << std::endl;
-    std::vector<int> v;
-    v.push_back(0);
-    v.push_back(1);
-    v.push_back(2);
+int main() {
+	int vArr[] = {1, 2, 3, 4};
+	std::vector<int> v(vArr, vArr + 4);
 
-    try
-    {
-        std::vector<int>::iterator it = easyfind(v, 1);
-        std::cout << "Found: " << *it << std::endl;
-        it = easyfind(v, 4);
-        std::cout << "Found: " << *it << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+	int lArr[] = {10, 20, 30};
+	std::list<int> l(lArr, lArr + 3);
 
-    std::cout << std::endl;
+	int dArr[] = {8, 9, 10, 11};
+	std::deque<int> d(dArr, dArr + 4);
 
-    // ===== LIST =====
-    std::cout << "===== LIST =====" << std::endl;
-    std::list<int> lst;
-    lst.push_back(42);
-    lst.push_back(21);
-    lst.push_back(84);
+	std::vector<int> empty;
 
-    try
-    {
-        std::list<int>::iterator it = easyfind(lst, 21);
-        std::cout << "Found: " << *it << std::endl;
-        it = easyfind(lst, 7);
-        std::cout << "Found: " << *it << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+	testExpectFound("Vector - Found", v, 3);
+	testExpectNotFound("Vector - Not Found", v, 9);
 
-    std::cout << std::endl;
+	testExpectFound("List - Found", l, 20);
+	testExpectNotFound("List - Not Found", l, 99);
 
-    // ===== DEQUE =====
-    std::cout << "===== DEQUE =====" << std::endl;
-    std::deque<int> dq;
-    dq.push_back(5);
-    dq.push_back(10);
-    dq.push_back(15);
+	testExpectFound("Deque - Found", d, 10);
+	testExpectNotFound("Deque - Not Found", d, 0);
 
-    try
-    {
-        std::deque<int>::iterator it = easyfind(dq, 10);
-        std::cout << "Found: " << *it << std::endl;
-        it = easyfind(dq, 999);
-        std::cout << "Found: " << *it << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+	testExpectNotFound("Empty Vector", empty, 1);
 
-    std::cout << std::endl;
+	testExpectFound("First Element", v, 1);
+	testExpectFound("Last Element", v, 4);
 
-    // ===== CONST CONTAINER TEST =====
-    std::cout << "===== CONST VECTOR =====" << std::endl;
-    std::vector<int> tmp;
-    tmp.push_back(100);
-    tmp.push_back(200);
-    tmp.push_back(300);
-    const std::vector<int> constV(tmp);
-    try
-    {
-        std::vector<int>::const_iterator it = easyfind(constV, 200);
-        std::cout << "Found: " << *it << std::endl;
-        it = easyfind(constV, 400);
-        std::cout << "Found: " << *it << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+	int dupArr[] = {1, 2, 2, 3};
+	std::vector<int> dup(dupArr, dupArr + 4);
+	testExpectFound("Duplicates", dup, 2);
 
-    return 0;
+	IntBox customBoxes[] = {{1}, {5}, {10}};
+	std::vector<IntBox> customVec(customBoxes, customBoxes + 3);
+	testExpectFound("IntBox Vector - Found", customVec, 5);
+	testExpectNotFound("IntBox Vector - Not Found", customVec, 7);
+
+	// Const container tests
+	const int cvArr[] = {1, 2, 3, 4};
+	const std::vector<int> constVec(cvArr, cvArr + 4);
+
+	const int cdArr[] = {8, 9, 10, 11};
+	const std::deque<int> constDeque(cdArr, cdArr + 4);
+
+	IntBox ccBoxes[] = {{1}, {5}, {10}};
+	const std::vector<IntBox> constCustomVec(ccBoxes, ccBoxes + 3);
+
+	testExpectFound("Const Vector - Found", constVec, 3);
+	testExpectNotFound("Const Vector - Not Found", constVec, 9);
+
+	testExpectFound("Const Deque - Found", constDeque, 10);
+	testExpectNotFound("Const Deque - Not Found", constDeque, 0);
+
+	testExpectFound("Const IntBox Vector - Found", constCustomVec, 5);
+	testExpectNotFound("Const IntBox Vector - Not Found", constCustomVec, 7);
+
+	return 0;
 }

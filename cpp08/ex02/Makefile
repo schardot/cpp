@@ -1,7 +1,7 @@
 CPP = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Iinclude -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -g
 
-NAME = mutant
+NAME = MutantStack
 SRC = src/main.cpp
 OBJ = $(SRC:.cpp=.o)
 
