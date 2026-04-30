@@ -125,12 +125,7 @@ void BitcoinExchange::parseInput(std::string inputFile)
 }
 
 double BitcoinExchange::findValue(const std::string &date) {
-    std::map<std::string, double>::iterator it = exchange.find(date);
-    if (it != exchange.end()) {
-        return (it->second);
-    }
-
-    it = exchange.lower_bound(date);
+    std::map<std::string, double>::iterator it = exchange.upper_bound(date);
     if (it == exchange.begin()) {
         throw std::runtime_error("Error: no available date for " + date);
     }
