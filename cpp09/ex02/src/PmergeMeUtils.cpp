@@ -58,22 +58,20 @@ std::vector<int> PmergeMe::jacobsthalOrder(size_t n)
     std::vector<int> order;
     if (n <= 1)
         return order;
-    size_t prev = 1;
     size_t j_prev = 1;
     size_t j = 3;
     while (j <= n)
     {
-        for (size_t k = j; k > prev; --k)
+        for (size_t k = j; k > j_prev; --k)
             if (k >= 2)
-                order.push_back(static_cast<int>(k));
+                order.push_back(k);
         size_t next = j + 2 * j_prev;
         j_prev = j;
-        prev = j;
         j = next;
     }
-    for (size_t k = n; k > prev; --k)
+    for (size_t k = n; k > j_prev; --k)
         if (k >= 2)
-            order.push_back(static_cast<int>(k));
+            order.push_back(k);
     return order;
 }
 
