@@ -50,13 +50,13 @@ void RPN::performOperation(char op) {
     int result = 0;
     switch (op) {
         case '+':
-            result = (num + num2);
+            result = (num2 + num);
             break;
         case '-':
             result = (num2 - num);
             break;
         case '*':
-            result = (num * num2);
+            result = (num2 * num);
             break;
         case '/':
             result = (num2 / num);
