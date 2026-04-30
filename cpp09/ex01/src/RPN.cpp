@@ -24,18 +24,18 @@ RPN::~RPN() {}
 
 void RPN::execute(std::string arg) {
     while (!arg.empty()) {
-        if (std::isdigit(arg.front()))
-            nums.push(arg.front() - 48);
-        else if (arg.front() == ' ')
+        if (std::isdigit(arg[0]))
+            nums.push(arg[0] - 48);
+        else if (arg[0] == ' ')
             ;
         else
-            performOperation(arg.front());
+            performOperation(arg[0]);
         arg.erase(arg.begin());
     }
     if (nums.size() != 1)
         throw std::runtime_error("Error: invalid operation");
     std::cout << nums.top() << std::endl;
-};
+}
 
 void RPN::performOperation(char op) {
 
