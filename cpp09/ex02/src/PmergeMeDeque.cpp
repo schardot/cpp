@@ -48,8 +48,6 @@ std::deque<Node> PmergeMe::fordJohnsonDeq(std::deque<Node>& input)
     for (size_t i = 0; i < order.size(); ++i)
     {
         size_t idx = order[i] - 1;
-        if (idx >= orderedPending.size())
-            continue;
         Node small = orderedPending[idx];
         std::deque<Node>::iterator bound = mainChain.begin();
         for (; bound != mainChain.end(); ++bound)
