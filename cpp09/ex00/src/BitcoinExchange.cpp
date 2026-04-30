@@ -6,6 +6,15 @@
 #include <iomanip>
 #include <cstdlib>
 
+static std::string trim(const std::string &s)
+{
+    std::string::size_type start = s.find_first_not_of(" \t\r\n");
+    if (start == std::string::npos)
+        return "";
+    std::string::size_type end = s.find_last_not_of(" \t\r\n");
+    return s.substr(start, end - start + 1);
+}
+
 BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(std::string filename) {
@@ -78,6 +87,8 @@ void BitcoinExchange::parseInput(std::string inputFile)
             std::cerr << "parseInput(): Error bad input => " << line << std::endl;
             continue;
         }
+        dateStr = trim(dateStr);
+        amountStr = trim(amountStr);
 
         double amountDouble;
         try {
@@ -103,7 +114,6 @@ void BitcoinExchange::parseInput(std::string inputFile)
 
         try {
             double price = findValue(dateStr);
-            std::cout << std::fixed << std::setprecision(2);
             std::cout << dateStr << " => " << amountDouble
                       << " = " << price * amountDouble
                       <<  std::endl;
@@ -128,12 +138,8 @@ double BitcoinExchange::findValue(const std::string &date) {
     return it->second;
 }
 
-bool BitcoinExchange::validateDate(const std::string &fullDate)
+bool BitcoinExchange::validateDate(const std::string &date)
 {
-    if (fullDate[fullDate.size() - 1] != ' ') {
-        return false;
-    }
-    std::string date = fullDate.substr(0, 10);
     if (date.size() != 10 || date[4] != '-' || date[7] != '-') return false;
     std::string yStr = date.substr(0, 4);
     std::string mStr = date.substr(5, 2);
