@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
+#include <cstdlib>
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -23,7 +25,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
 BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::loadCSV(std::string csvFile) {
-    std::ifstream data(csvFile);
+    std::ifstream data(csvFile.c_str());
     if (!data)
         throw std::runtime_error("Error, could not open file: " + csvFile);
 
@@ -41,7 +43,7 @@ void BitcoinExchange::loadCSV(std::string csvFile) {
 
         double rateDouble;
         try {
-            rateDouble = std::stod(rateStr);
+            rateDouble = std::atof(rateStr.c_str());
         } catch (...) {
             throw std::runtime_error("loadCsv(): Invalid number" + line);
         }
@@ -53,7 +55,7 @@ void BitcoinExchange::loadCSV(std::string csvFile) {
 
 void BitcoinExchange::parseInput(std::string inputFile)
 {
-    std::ifstream data(inputFile);
+    std::ifstream data(inputFile.c_str());
     if (!data)
         throw std::runtime_error("Error, could not open file: " + inputFile);
 
@@ -79,7 +81,7 @@ void BitcoinExchange::parseInput(std::string inputFile)
 
         double amountDouble;
         try {
-            amountDouble = std::stod(amountStr);
+            amountDouble = std::atof(amountStr.c_str());
         } catch (...) {
             throw std::runtime_error("Error: Invalid number" + line);
         }
@@ -137,13 +139,13 @@ bool BitcoinExchange::validateDate(const std::string &fullDate)
     std::string mStr = date.substr(5, 2);
     std::string dStr = date.substr(8, 2);
 
-    int year = std::atoi(yStr.c_str());
-    int month = std::atoi(mStr.c_str());
-    int day = std::atoi(dStr.c_str());
+    int year = atoi(yStr.c_str());
+    int month = atoi(mStr.c_str());
+    int day = atoi(dStr.c_str());
     if (year == 0 || month == 0 || day == 0)
         return false;
 
-    if (!(month <= 12 && month >= 1) || !(day <= 31 && day >= 1) || year < 2009)
+    if (!(month <= 12 && month >= 1) || !(day <= 31 && day >= 1))
         return false;
 
     int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
