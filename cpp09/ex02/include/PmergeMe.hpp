@@ -31,6 +31,7 @@ private:
 
     std::vector<Node> buildNodeVector(const std::vector<int> &input);
     std::deque<Node> buildNodeDeque(const std::deque<int> &input);
+    size_t optimalComparisons(size_t n) const;
 
 public:
     PmergeMe() {};
