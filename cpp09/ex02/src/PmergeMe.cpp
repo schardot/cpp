@@ -52,10 +52,10 @@ void PmergeMe::run() {
               << " elements with std::vector : " << vecUs << " us" << std::endl;
     std::cout << "Time to process a range of " << deq.size()
               << " elements with std::deque : " << deqUs << " us" << std::endl;
-    size_t optimal = optimalComparisons(vec.size());
-    std::cout << "Comparisons with std::vector: " << vecComparisons
-              << " (optimal <= " << optimal << ")" << std::endl;
-    std::cout << "Comparisons with std::deque: " << deqComparisons
-              << " (optimal <= " << optimal << ")" << std::endl;
+    // size_t optimal = optimalComparisons(vec.size());
+    // std::cout << "Comparisons with std::vector: " << vecComparisons
+    //           << " (optimal <= " << optimal << ")" << std::endl;
+    // std::cout << "Comparisons with std::deque: " << deqComparisons
+    //           << " (optimal <= " << optimal << ")" << std::endl;
 }
 
