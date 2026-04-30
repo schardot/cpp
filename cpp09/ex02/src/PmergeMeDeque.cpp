@@ -45,24 +45,8 @@ std::deque<Node> PmergeMe::fordJohnsonDeq(std::deque<Node>& input)
         mainChain.insert(mainChain.begin(), orderedPending[0]);
 
     std::vector<int> order = jacobsthalOrder(orderedPending.size());
-    bool extraInserted = false;
-    size_t extraInsertStep = order.size();
-    if (hasExtra)
-    {
-        if (orderedPending.size() == 2)
-            extraInsertStep = 0;
-        else if (orderedPending.size() >= 4 && !order.empty())
-            extraInsertStep = order.size() - 1;
-    }
-
     for (size_t i = 0; i < order.size(); ++i)
     {
-        if (hasExtra && !extraInserted && i == extraInsertStep)
-        {
-            std::deque<Node>::iterator posStr = lowerBoundDeq(mainChain, mainChain.end(), extra);
-            mainChain.insert(posStr, extra);
-            extraInserted = true;
-        }
         size_t idx = order[i] - 1;
         if (idx >= orderedPending.size())
             continue;
@@ -75,7 +59,7 @@ std::deque<Node> PmergeMe::fordJohnsonDeq(std::deque<Node>& input)
         mainChain.insert(pos, small);
     }
 
-    if (hasExtra && !extraInserted)
+    if (hasExtra)
     {
         std::deque<Node>::iterator pos = lowerBoundDeq(mainChain, mainChain.end(), extra);
         mainChain.insert(pos, extra);

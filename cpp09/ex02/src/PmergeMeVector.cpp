@@ -29,8 +29,6 @@ std::vector<Node> PmergeMe::fordJohnsonVec(std::vector<Node>& input)
     }
 
     mainChain = fordJohnsonVec(mainChain);
-    if (mainChain.empty())
-        return mainChain;
 
     std::vector<Node> orderedPending;
     for (size_t i = 0; i < mainChain.size(); ++i)
@@ -45,24 +43,8 @@ std::vector<Node> PmergeMe::fordJohnsonVec(std::vector<Node>& input)
         mainChain.insert(mainChain.begin(), orderedPending[0]);
 
     std::vector<int> order = jacobsthalOrder(orderedPending.size());
-    bool extraInserted = false;
-    size_t extraInsertStep = order.size();
-    if (hasExtra)
-    {
-        if (orderedPending.size() == 2)
-            extraInsertStep = 0;
-        else if (orderedPending.size() >= 4 && !order.empty())
-            extraInsertStep = order.size() - 1;
-    }
-
     for (size_t i = 0; i < order.size(); ++i)
     {
-        if (hasExtra && !extraInserted && i == extraInsertStep)
-        {
-            std::vector<Node>::iterator posStr = lowerBoundVec(mainChain, mainChain.end(), extra);
-            mainChain.insert(posStr, extra);
-            extraInserted = true;
-        }
         size_t idx = order[i] - 1;
         if (idx >= orderedPending.size())
             continue;
@@ -75,7 +57,7 @@ std::vector<Node> PmergeMe::fordJohnsonVec(std::vector<Node>& input)
         mainChain.insert(pos, small);
     }
 
-    if (hasExtra && !extraInserted)
+    if (hasExtra)
     {
         std::vector<Node>::iterator pos = lowerBoundVec(mainChain, mainChain.end(), extra);
         mainChain.insert(pos, extra);
