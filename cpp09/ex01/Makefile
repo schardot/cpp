@@ -1,5 +1,5 @@
 CPP = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Iinclude -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
 NAME = RPN
 SRC = src/main.cpp src/RPN.cpp

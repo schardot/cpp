@@ -1,5 +1,5 @@
 CPP = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
 NAME = btc
 SRC = src/main.cpp src/BitcoinExchange.cpp

@@ -1,5 +1,5 @@
 CPP = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Iinclude
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
 NAME = PmergeMe
 SRC = src/main.cpp src/PmergeMe.cpp src/PmergeMeVector.cpp src/PmergeMeDeque.cpp src/PmergeMeUtils.cpp

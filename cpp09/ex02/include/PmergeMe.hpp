@@ -18,12 +18,12 @@ class PmergeMe
 private:
     std::deque<int> deq;
     std::vector<int> vec;
-    size_t vecComparisons;
-    size_t deqComparisons;
+    std::size_t vecComparisons;
+    std::size_t deqComparisons;
 
     std::vector<Node> fordJohnsonVec(std::vector<Node> &input);
     std::deque<Node> fordJohnsonDeq(std::deque<Node> &input);
-    std::vector<int> jacobsthalOrder(size_t n);
+    std::vector<int> jacobsthalOrder(std::size_t n);
     bool compareNodesVec(const Node &a, const Node &b);
     bool compareNodesDeq(const Node &a, const Node &b);
     std::vector<Node>::iterator lowerBoundVec(std::vector<Node> &chain, std::vector<Node>::iterator end, const Node &target);
@@ -31,7 +31,7 @@ private:
 
     std::vector<Node> buildNodeVector(const std::vector<int> &input);
     std::deque<Node> buildNodeDeque(const std::deque<int> &input);
-    size_t optimalComparisons(size_t n) const;
+    std::size_t optimalComparisons(std::size_t n) const;
 
 public:
     PmergeMe() {};
@@ -41,7 +41,7 @@ public:
     ~PmergeMe(){};
 
     void run();
-    size_t getVecComparisons() const;
-    size_t getDeqComparisons() const;
+    std::size_t getVecComparisons() const;
+    std::size_t getDeqComparisons() const;
 };
 
